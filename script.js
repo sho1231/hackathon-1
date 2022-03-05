@@ -5,6 +5,7 @@ function create(){
     let inp=document.createElement('input');
     inp.setAttribute('type','text');
     inp.setAttribute('class','search');
+    inp.setAttribute('placeholder','Enter name here');
     div.append(inp);
     let btn=document.createElement('button');
     btn.setAttribute('type','submit');
