@@ -99,5 +99,6 @@ async function search(name){
                 </button>`
 
         }
+        document.body.append(div);
     }
 }
