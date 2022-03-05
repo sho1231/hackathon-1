@@ -10,7 +10,7 @@ function create(){
     btn.setAttribute('type','submit');
     btn.setAttribute('class','searchbtn');
     btn.setAttribute('onclick','search(document.querySelector(".search").value)');
-    btn.innerText="search";
+    btn.innerText="click here to search";
     div.append(btn);
 }
 async function search(name){
