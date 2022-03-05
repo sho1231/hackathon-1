@@ -30,7 +30,7 @@ async function search(name){
     }
     try
     {
-        let prom=await fetch(`https://api.nationalize.io?name=${name}`);
+        var prom=await fetch(`https://api.nationalize.io?name=${name}`);
         let obj=await prom.json();
         let table=document.createElement('table');
         table.setAttribute('class','table table-md-3 table-sm-3 table-3');
@@ -60,10 +60,38 @@ async function search(name){
         let div=document.createElement("div");
         div.setAttribute('class','alert alert-danger alert-dismissible fade show');
         div.setAttribute('role','alert');
-        div.innerHTML=`<strong>Error occured!</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>`
+        let message=prom.status;
+        switch(message){
+            case 200:
+                div.innerHTML=`<strong>Error occured! </strong>Name doesn't exist in the api
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>`
+                break;
+            case 401:
+                div.innerHTML=`<strong>Unautherized! </strong>Invalid api key
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>`
+                break;
+            case 402:
+                div.innerHTML=`<strong>Payment required! </strong>Subscription is not active
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>`
+                break;
+            case 422:
+                div.innerHTML=`<strong>Unprocessable Entity! </strong>Missing 'name' parameter or Invalid 'name' parameter
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>`
+            case 429:
+                div.innerHTML=`<strong>Too Many Requests! </strong>Request limit reached or Request limit too low to process request
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>`
+
+        }
         document.body.append(div);
         document.querySelector(".alert").alert('close');
     }
