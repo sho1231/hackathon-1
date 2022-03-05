@@ -99,7 +99,5 @@ async function search(name){
                 </button>`
 
         }
-        document.body.append(div);
-        document.querySelector(".alert").alert('close');
     }
 }
