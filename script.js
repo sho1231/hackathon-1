@@ -12,7 +12,16 @@ function create(){
     btn.setAttribute('class','searchbtn');
     btn.setAttribute('onclick','search(document.querySelector(".search").value)');
     btn.innerText="click here to search";
+    let a=document.createElement('a');
+    a.setAttribute('href','https://nationalize.io/our-data');
+    a.setAttribute('class','badge badge-dark');
+    a.setAttribute('target','blank');
+    a.innerHTML=`click here to get the full name of the country codes`;
+    let span=document.createElement('span');
+    span.setAttribute('style','text-align:right;margin-left:510px');
+    span.append(a);
     div.append(btn);
+    div.append(span);
 }
 async function search(name){
     try{
