@@ -63,7 +63,7 @@ async function search(name){
         let message=prom.status;
         switch(message){
             case 200:
-                div.innerHTML=`<strong>Error occured! </strong>Name doesn't exist in the api
+                div.innerHTML=`<strong>Error occured! </strong>Name doesn't exist in the api :((
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>`
@@ -87,6 +87,12 @@ async function search(name){
                 </button>`
             case 429:
                 div.innerHTML=`<strong>Too Many Requests! </strong>Request limit reached or Request limit too low to process request
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>`
+                break;
+            default:
+                div.innerHTML=`<strong>Error cannot be identified! </strong>:((
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>`
