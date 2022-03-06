@@ -35,6 +35,16 @@ async function search(name){
         let obj=await prom.json();
         let table=document.createElement('table');
         table.setAttribute('class','table table-md-3 table-sm-3 table-3');
+        try{
+            var cc1=await fetch(`https://restcountries.com/v2/alpha/${obj["country"][0]["country_id"]}`);
+            var cc2=await fetch(`https://restcountries.com/v2/alpha/${obj["country"][1]["country_id"]}`);
+            var c1=await cc1.json();
+            var c2=await cc2.json();
+            console.log(c1.name,c2.name);
+        }
+        catch(e){
+            
+        }
         table.innerHTML=`<thead class="thead-dark">
         <tr>
         <th >No.</th>
@@ -45,12 +55,12 @@ async function search(name){
     <tbody>
         <tr style="background-color:grey">
             <td>1</td>
-            <td>${obj["country"][0]["country_id"]}</td>
+            <td><span class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="${c1.name}">${obj["country"][0]["country_id"]}</span></td>
             <td>${obj["country"][0]["probability"]}</td>
         </tr>
         <tr style="background-color:#80808052">
             <td>2</td>
-            <td>${obj["country"][1]["country_id"]}</td>
+            <td><span class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="${c2.name}">${obj["country"][1]["country_id"]}</span></td>
             <td>${obj["country"][1]["probability"]}</td>
         </tr>
     </tbody>
